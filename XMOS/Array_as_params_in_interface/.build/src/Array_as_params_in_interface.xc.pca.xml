@@ -1,0 +1,41 @@
+<preCompilationAnalysis file="../src/Array_as_params_in_interface.xc">
+<fDef name="main" global="true" noreturn="false" doNotSpecialize="false" numParams="0"/>
+<fDef name="msg" global="true" interface="my_interface" noreturn="false" doNotSpecialize="false" numParams="1"/>
+<fDef name="task1" global="true" noreturn="false" doNotSpecialize="false" numParams="1"/>
+<fDef name="task2" global="true" noreturn="false" doNotSpecialize="false" numParams="1"/>
+<fCall name="msg" global="true" interface="my_interface" numArgs="1">
+  <arg num="0">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+</fCall>
+<fCall name="printintln" global="true" numArgs="1">
+  <arg num="0">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+</fCall>
+<fCall name="printintln" global="true" numArgs="1">
+  <arg num="0">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+</fCall>
+<fCall name="task1" global="true" numArgs="1" impId="0">
+  <arg num="0">
+    <values>
+      <value type="interface"><interfaceInfo index="0" type="chan" isYielding="false"/></value>
+    </values>
+  </arg>
+</fCall>
+<fCall name="task2" global="true" numArgs="1" impId="1">
+  <arg num="0">
+    <values>
+      <value type="interface"><interfaceInfo index="0" type="chan" isYielding="false"/></value>
+    </values>
+  </arg>
+</fCall>
+</preCompilationAnalysis>

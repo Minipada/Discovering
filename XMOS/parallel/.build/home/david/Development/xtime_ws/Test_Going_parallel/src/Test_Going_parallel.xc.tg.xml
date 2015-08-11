@@ -1,0 +1,43 @@
+<taskgraph>
+<task>
+  <name>hw</name>
+  <inFunction>hw</inFunction>
+  <calledFunction>printf</calledFunction>
+</task>
+<task>
+  <name>main</name>
+  <inFunction>main</inFunction>
+</task>
+<task>
+  <name>_task_hw_0</name>
+  <inFunction>main</inFunction>
+  <parent>main</parent>
+  <calledFunction>hw</calledFunction>
+  <core>1</core>
+  <inPar/>
+</task>
+<task>
+  <name>_task_hw_1</name>
+  <inFunction>main</inFunction>
+  <parent>main</parent>
+  <calledFunction>hw</calledFunction>
+  <core>2</core>
+  <inPar/>
+</task>
+<task>
+  <name>_task_hw_2</name>
+  <inFunction>main</inFunction>
+  <parent>main</parent>
+  <calledFunction>hw</calledFunction>
+  <core>3</core>
+  <inPar/>
+</task>
+<task>
+  <name>_task_hw_3</name>
+  <inFunction>main</inFunction>
+  <parent>main</parent>
+  <calledFunction>hw</calledFunction>
+  <core>4</core>
+  <inPar/>
+</task>
+</taskgraph>

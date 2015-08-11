@@ -1,0 +1,90 @@
+<preCompilationAnalysis file="../src/Test_Interfaces.xc">
+<fDef name="client_int_1" global="true" noreturn="false" doNotSpecialize="false" numParams="1"/>
+<fDef name="client_int_2" global="true" noreturn="false" doNotSpecialize="false" numParams="1"/>
+<fDef name="main" global="true" noreturn="false" doNotSpecialize="false" numParams="0"/>
+<fDef name="server_int" global="true" noreturn="true" doNotSpecialize="false" numParams="2"/>
+<fCall name="fA" global="true" interface="my_interface" numArgs="2">
+  <arg num="0">
+    <values>
+      <value type="intval"><intval isSigned="true" val="5"/></value>
+    </values>
+  </arg>
+  <arg num="1">
+    <values>
+      <value type="intval"><intval isSigned="true" val="10"/></value>
+    </values>
+  </arg>
+</fCall>
+<fCall name="fB" global="true" interface="my_interface" numArgs="1">
+  <arg num="0">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+</fCall>
+<fCall name="printf" global="true" numArgs="4">
+  <arg num="0">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+  <arg num="1">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+  <arg num="2">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+  <arg num="3">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+</fCall>
+<fCall name="printf" global="true" numArgs="3">
+  <arg num="0">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+  <arg num="1">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+  <arg num="2">
+    <values>
+      <value type="unknown"/>
+    </values>
+  </arg>
+</fCall>
+<fCall name="client_int_1" global="true" numArgs="1" impId="0">
+  <arg num="0">
+    <values>
+      <value type="interface"><interfaceInfo index="0" type="chan" isYielding="false"/></value>
+    </values>
+  </arg>
+</fCall>
+<fCall name="client_int_2" global="true" numArgs="1" impId="1">
+  <arg num="0">
+    <values>
+      <value type="interface"><interfaceInfo index="1" type="chan" isYielding="false"/></value>
+    </values>
+  </arg>
+</fCall>
+<fCall name="server_int" global="true" numArgs="2" impId="2">
+  <arg num="0">
+    <values>
+      <value type="interface"><interfaceInfo index="0" type="chan" isYielding="false"/><interfaceInfo index="1" type="chan" isYielding="false"/></value>
+    </values>
+  </arg>
+  <arg num="1">
+    <values>
+      <value type="intval"><intval isSigned="true" val="2"/></value>
+    </values>
+  </arg>
+</fCall>
+</preCompilationAnalysis>
