@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <name>lamp_description</name>
+  <version>0.0.1</version>
+  <description>lamp_description</description>
+
+  <maintainer email="minipada@gmail.com">David Bensoussan</maintainer>
+  <license>MIT</license>
+  <url type="website">http://http://davidbensoussan.olympe.in/</url> 
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+</package>
