@@ -5,7 +5,7 @@
 // Copyright   : Copyright
 // Description : Hello World in C++, Ansi-style
 //============================================================================
-//g++ -std=c++11 Boost.cpp -o Boost
+//g++ -std=c++11 Boost_geometry.cpp -o Boost_geometry
 
 #include <boost/assign.hpp>
 #include <boost/geometry.hpp>
