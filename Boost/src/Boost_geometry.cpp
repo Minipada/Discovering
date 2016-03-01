@@ -21,7 +21,7 @@ BOOST_GEOMETRY_REGISTER_BOOST_TUPLE_CS(cs::cartesian)
 
 double getArea(polygon poly)
 {
-	return boost::geometry::area(poly);
+  return boost::geometry::area(poly);
 }
 
 point_type getCentroid(polygon& poly)
@@ -36,33 +36,33 @@ void SVGCreater(std::vector<polygon>& poly_, const char* path)
   std::ofstream svg(path);
   boost::geometry::svg_mapper<point_type> mapper(svg, 400, 400);
 
-	for (std::vector<polygon>::iterator it = poly_.begin(); it != poly_.end(); it++)
-	{
+  for (std::vector<polygon>::iterator it = poly_.begin(); it != poly_.end(); it++)
+  {
     mapper.add(*it);
     mapper.map(*it, "fill-opacity:0.3;fill:rgb(51,51,153);stroke:rgb(51,51,153);stroke-width:2");
     std::cout << "Area: " << getArea(*it) << "\n";
 
     std::cout << "Centroid: " << boost::geometry::dsv(getCentroid(*it)) << "\n";
-	}
+  }
 
 }
 
 void SVGCreater(polygon& poly, boost::geometry::svg_mapper<point_type>& mapper, std::string color)
 {
-	std::string svg_color = "fill-opacity:0.3;fill:rgb("
-			+ color + ");stroke:rgb("
-			+ color + ");stroke-width:2";
+  std::string svg_color = "fill-opacity:0.3;fill:rgb("
+      + color + ");stroke:rgb("
+      + color + ");stroke-width:2";
 
-	mapper.add(poly);
-	mapper.map(poly, svg_color);
+  mapper.add(poly);
+  mapper.map(poly, svg_color);
   std::cout << "Area: " << getArea(poly) << "\n";
   std::cout << "Centroid: " << boost::geometry::dsv(getCentroid(poly)) << "\n";
 }
 
 void UnionBoost(polygon& poly1, polygon& poly2)
 {
-	// Correct polygons - Needed because polygons can't be merged if not in the same direction
-	// Clockwise or counterclockwise
+  // Correct polygons - Needed because polygons can't be merged if not in the same direction
+  // Clockwise or counterclockwise
   boost::geometry::correct(poly1);
   boost::geometry::correct(poly2);
 
@@ -75,34 +75,34 @@ void UnionBoost(polygon& poly1, polygon& poly2)
 
 void areDisjoint(polygon& poly1, polygon& poly2)
 {
-	bool dis = boost::geometry::disjoint(poly1,poly2);
+  bool dis = boost::geometry::disjoint(poly1,poly2);
 
-	if (dis == 0)
-	{
-		std::cout << "Not disjoint" << "\n";
-	}
-	else {
-		std::cout << "Disjoint" << "\n";
-	}
+  if (dis == 0)
+  {
+    std::cout << "Not disjoint" << "\n";
+  }
+  else {
+    std::cout << "Disjoint" << "\n";
+  }
 }
 
 void areIntersects(polygon& poly1, polygon& poly2)
 {
-	bool dis = boost::geometry::intersects(poly1,poly2);
+  bool dis = boost::geometry::intersects(poly1,poly2);
 
-	if (dis == 0)
-	{
-		std::cout << "No intersection" << "\n";
-	}
-	else {
-		std::cout << "Intersection" << "\n";
-	}
+  if (dis == 0)
+  {
+    std::cout << "No intersection" << "\n";
+  }
+  else {
+    std::cout << "Intersection" << "\n";
+  }
 }
 
 void DifferenceBoost(polygon& poly1, polygon& poly2, std::string path)
 {
-	// Correct polygons - Needed because polygons can't be merged if not in the same direction
-	// Clockwise or counterclockwise
+  // Correct polygons - Needed because polygons can't be merged if not in the same direction
+  // Clockwise or counterclockwise
   boost::geometry::correct(poly1);
   boost::geometry::correct(poly2);
 
@@ -115,36 +115,40 @@ void DifferenceBoost(polygon& poly1, polygon& poly2, std::string path)
 
 polygon CreatePolygonFromString()
 {
-	polygon poly_string_;
-	// Clockwise
-	boost::geometry::read_wkt(
-	        "POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
-	            "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", poly_string_);
+  polygon poly_string_;
+  // Clockwise
+  boost::geometry::read_wkt(
+        "POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
+        "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", poly_string_);
 
-	return poly_string_;
+  return poly_string_;
 }
 
 polygon CreatePolygonFromTuples()
 {
-	polygon poly_tuples_;
+  polygon poly_tuples_;
 
-	// Counterclockwise
-	std::vector<point_type> points_ =
-			{
-					{4.0, -0.5}, {4.5, 1.0}, {6.0, 1.5} , {4.5, 2.0}, {4.0, 3.5} , {3.5, 2.0} , {2.0, 1.5} , {3.5, 1.0} , {4.0, -0.5}
-			};
-	for (std::vector<point_type>::iterator it = points_.begin(); it != points_.end(); it++)
-	{
-		boost_geom::append(poly_tuples_, boost::make_tuple(it->x(), it->y()));
-	}
+  // Counterclockwise
+  /*std::vector<point_type> points_ =
+   {
+     {4.0, -0.5}, {4.5, 1.0}, {6.0, 1.5} , {4.5, 2.0}, {4.0, 3.5} , {3.5, 2.0} , {2.0, 1.5} , {3.5, 1.0} , {4.0, -0.5}
+   };*/
+  std::vector<point_type> points_ = {
+    {456, 688}, {496, 765}, {536, 813}, {597, 840}, {696, 814}, {736, 815}, {798, 794}, {834, 755}, {937, 674}, {974, 602}, {1000, 509}, {1000, 474}, {1017, 401}, {1045, 308}, {1038, 198}, {1050, 141}, {1024, 70}, {1011, 61}, {948, 51}, {870, 47}, {842, 59}, {745, 74}, {630, 22}, {576, 29}, {517, 10}, {489, 21}, {451, 62}, {416, 62}, {376, 84}, {353, 88}, {325, 77}, {263, 20}, {220, 3}, {185, 0}, {144, 17}, {125, 40}, {121, 83}, {101, 108}, {105, 157}, {71, 270}, {71, 327}, {59, 358}, {52, 461}, {53, 545}, {27, 600}, {41, 709}, {34, 732}, {5, 771}, {129, 777}, {196, 750}, {252, 761}, {284, 785}, {326, 801}, {369, 806}, {378, 804}, {433, 703}, {429, 694}, {437, 681}, {456, 688}
+  };
 
-	return poly_tuples_;
+  for (std::vector<point_type>::iterator it = points_.begin(); it != points_.end(); it++)
+  {
+    boost_geom::append(poly_tuples_, boost::make_tuple(it->x()/100, it->y()/100));
+  }
+
+  return poly_tuples_;
 }
 
 void distancePolygons(polygon poly1, polygon poly2)
 {
-//	double test = boost::geometry::distance(poly1, poly2);
-	std::cout << "Distance: " << boost::geometry::distance(poly1, poly2) << "\n";
+  //	double test = boost::geometry::distance(poly1, poly2);
+  std::cout << "Distance: " << boost::geometry::distance(poly1, poly2) << "\n";
 }
 
 void ExtremesPoly(polygon& poly)
@@ -153,27 +157,27 @@ void ExtremesPoly(polygon& poly)
   boost::geometry::envelope(poly, box);
 
   std::cout << "Min X: " << box.min_corner().x() << "| "
-  		<< "Min Y: " << box.min_corner().y() << "| "
-			<< "Max X: " << box.max_corner().x() << "| "
-			<< "Max Y: " << box.max_corner().y() << "| " << "\n";
+            << "Min Y: " << box.min_corner().y() << "| "
+            << "Max X: " << box.max_corner().x() << "| "
+            << "Max Y: " << box.max_corner().y() << "| " << "\n";
 }
 
 void areGeometryEquals(polygon& poly1, polygon& poly2)
 {
-	if (boost::geometry::equals(poly1, poly2) == true)
-	{
-	  std::cout << "Geometries equal" << "\n";
-	}
-	else
-	{
-	  std::cout << "Geometries not equal" << "\n";
-	}
+  if (boost::geometry::equals(poly1, poly2) == true)
+  {
+    std::cout << "Geometries equal" << "\n";
+  }
+  else
+  {
+    std::cout << "Geometries not equal" << "\n";
+  }
 }
 
 void IntersectionBoost(polygon& poly1, polygon& poly2)
 {
-	// Correct polygons - Needed because polygons can't be merged if not in the same direction
-	// Clockwise or counterclockwise
+  // Correct polygons - Needed because polygons can't be merged if not in the same direction
+  // Clockwise or counterclockwise
   boost::geometry::correct(poly1);
   boost::geometry::correct(poly2);
 
@@ -201,7 +205,7 @@ void numberOfPoints(polygon& poly1)
 
 void perimeter(polygon& poly1)
 {
-	std::cout << "Perimeter: " << boost::geometry::perimeter(poly1) << "\n";
+  std::cout << "Perimeter: " << boost::geometry::perimeter(poly1) << "\n";
 }
 
 void simplifyPolygon(polygon& poly1, double simplify_coefficient, std::string path)
@@ -217,104 +221,104 @@ void simplifyPolygon(polygon& poly1, double simplify_coefficient, std::string pa
 
 void symDifferenceBoost(polygon& poly1, polygon& poly2)
 {
- boost::geometry::model::multi_polygon<polygon> multi;
+  boost::geometry::model::multi_polygon<polygon> multi;
 
-	// Correct polygons - Needed because polygons can't be merged if not in the same direction
-	// Clockwise or counterclockwise
- boost::geometry::correct(poly1);
- boost::geometry::correct(poly2);
+  // Correct polygons - Needed because polygons can't be merged if not in the same direction
+  // Clockwise or counterclockwise
+  boost::geometry::correct(poly1);
+  boost::geometry::correct(poly2);
 
- boost::geometry::sym_difference(poly1, poly2, multi);
+  boost::geometry::sym_difference(poly1, poly2, multi);
 
-	std::cout
-			<< "poly1 XOR poly2:" << "\n"
-			<< "total: " << boost::geometry::area(multi) << "\n";
-	int i = 0;
-	BOOST_FOREACH(polygon const& p, multi)
-	{
-			std::cout << i++ << ": " << boost::geometry::area(p) << "\n";
-	}
+  std::cout
+      << "poly1 XOR poly2:" << "\n"
+      << "total: " << boost::geometry::area(multi) << "\n";
+  int i = 0;
+  BOOST_FOREACH(polygon const& p, multi)
+  {
+    std::cout << i++ << ": " << boost::geometry::area(p) << "\n";
+  }
 }
 
 void InsideBoost(polygon& poly1, polygon& poly2)
 {
-	bool result = boost::geometry::within(poly1, poly2);
+  bool result = boost::geometry::within(poly1, poly2);
 
-	if (result == true)
-	{
-		std::cout << "Poly1 inside Poly2" << "\n";
-	}
-	else {
-		std::cout << "Poly1 not inside Poly2" << "\n";
-	}
+  if (result == true)
+  {
+    std::cout << "Poly1 inside Poly2" << "\n";
+  }
+  else {
+    std::cout << "Poly1 not inside Poly2" << "\n";
+  }
 }
 
 int main() {
 
-	std::cout << "!!!Hello Boost!!!" << "\n" ;
+  std::cout << "!!!Hello Boost!!!" << "\n" ;
 
   // Working with points
-	polygon poly_string = CreatePolygonFromString();
-	polygon poly_tuples = CreatePolygonFromTuples();
+  polygon poly_string = CreatePolygonFromString();
+  polygon poly_tuples = CreatePolygonFromTuples();
 
-	// Sym Difference
-	symDifferenceBoost(poly_string, poly_tuples);
-	symDifferenceBoost(poly_tuples, poly_string);
+  // Sym Difference
+  symDifferenceBoost(poly_string, poly_tuples);
+  symDifferenceBoost(poly_tuples, poly_string);
 
-	// Hull
-	hullBoost(poly_string,"/home/david/Development/Discovering/Boost/maps/hull1.svg");
-	hullBoost(poly_tuples,"/home/david/Development/Discovering/Boost/maps/hull2.svg");
+  // Hull
+  hullBoost(poly_string,"/home/david/Development/Discovering/Boost/maps/hull1.svg");
+  hullBoost(poly_tuples,"/home/david/Development/Discovering/Boost/maps/hull2.svg");
 
-	// Number of points
-	numberOfPoints(poly_string);
-	numberOfPoints(poly_tuples);
+  // Number of points
+  numberOfPoints(poly_string);
+  numberOfPoints(poly_tuples);
 
-	// Perimeter
-	perimeter(poly_string);
-	perimeter(poly_tuples);
+  // Perimeter
+  perimeter(poly_string);
+  perimeter(poly_tuples);
 
-	// Minimums and maximums
-	ExtremesPoly(poly_string);
-	ExtremesPoly(poly_tuples);
+  // Minimums and maximums
+  ExtremesPoly(poly_string);
+  ExtremesPoly(poly_tuples);
 
-	// Simplify
-	simplifyPolygon(poly_string,0.5, "/home/david/Development/Discovering/Boost/maps/simplified1.svg");
-	simplifyPolygon(poly_tuples,0.5, "/home/david/Development/Discovering/Boost/maps/simplified2.svg");
+  // Simplify
+  simplifyPolygon(poly_string,0.5, "/home/david/Development/Discovering/Boost/maps/simplified1.svg");
+  simplifyPolygon(poly_tuples,0, "/home/david/Development/Discovering/Boost/maps/simplified2.svg");
 
-	// Number of points
-	numberOfPoints(poly_string);
-	numberOfPoints(poly_tuples);
+  // Number of points
+  numberOfPoints(poly_string);
+  numberOfPoints(poly_tuples);
 
-	// Equals
-	areGeometryEquals(poly_string, poly_tuples);
+  // Equals
+  areGeometryEquals(poly_string, poly_tuples);
 
-	//Disjoint
-	areDisjoint(poly_string, poly_tuples);
+  //Disjoint
+  areDisjoint(poly_string, poly_tuples);
 
-	//Intersects
-	areIntersects(poly_string, poly_tuples);
+  //Intersects
+  areIntersects(poly_string, poly_tuples);
 
-	// Distance
-	distancePolygons(poly_string, poly_tuples);
+  // Distance
+  distancePolygons(poly_string, poly_tuples);
 
-	// Union
-	std::cout << "!!!Union!!!" << "\n";
-	UnionBoost(poly_string, poly_tuples);
+  // Union
+  std::cout << "!!!Union!!!" << "\n";
+  UnionBoost(poly_string, poly_tuples);
 
-	std::string difference = "/home/david/Development/Discovering/Boost/maps/difference_";
+  std::string difference = "/home/david/Development/Discovering/Boost/maps/difference_";
 
-	// Difference
-	std::cout << "!!!Difference 1!!!" << "\n";
-	DifferenceBoost(poly_string, poly_tuples, (difference + "1"));
+  // Difference
+  std::cout << "!!!Difference 1!!!" << "\n";
+  DifferenceBoost(poly_string, poly_tuples, (difference + "1"));
 
-	std::cout << "!!!Difference 2!!!" << "\n";
-	DifferenceBoost(poly_tuples, poly_string, (difference + "2"));
+  std::cout << "!!!Difference 2!!!" << "\n";
+  DifferenceBoost(poly_tuples, poly_string, (difference + "2"));
 
-	// Intersection
-	IntersectionBoost(poly_tuples, poly_string);
+  // Intersection
+  IntersectionBoost(poly_tuples, poly_string);
 
-	// Inside
-	InsideBoost(poly_string, poly_tuples);
+  // Inside
+  InsideBoost(poly_string, poly_tuples);
 
-	return 0;
+  return 0;
 }
