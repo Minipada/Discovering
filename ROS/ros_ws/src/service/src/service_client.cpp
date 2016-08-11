@@ -1,5 +1,5 @@
 #include "ros/ros.h"
-#include "test_service/AddTwoInts.h"
+#include <test_service/AddTwoInts.h>
 #include <cstdlib>
 
 int main(int argc, char **argv)
